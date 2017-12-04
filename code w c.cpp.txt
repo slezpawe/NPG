@@ -6,7 +6,7 @@ void main() //jasdklfjasdkljflkasdjfklasdj
 {
 int maze[SIZE][SIZE],mark[SIZE][SIZE],stack[SIZE][3];
 static int
-move[8][2]={-1,0,-1,1,0,1,1,1,1,0,1,-1,0,-1,-1,-1};
+move[8][2]={-1,0,-1,1,0,1,1,1,1,0,1,-1,0,-1,-1,-1}; //asdjfklajs
 
 int i,j,m,n,top,mov,g,h;
 clrscr();
