@@ -2,7 +2,7 @@
 #includestdio.h
 #define SIZE 15
 #includestdlib.h
-void main()
+void main()//to jest mój koment
 {
 int maze[SIZE][SIZE],mark[SIZE][SIZE],stack[SIZE][3];
 static int
