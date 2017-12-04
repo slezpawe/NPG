@@ -10,7 +10,7 @@ void main()
 	{
 
 	  void enter(void);
-	  void quick(void);
+	  void quick(void); //uytuyqwetkljklfasd
 	  void prnt(void);
 	  clrscr();
 	  enter();     //entering elements in the array
