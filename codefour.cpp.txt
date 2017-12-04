@@ -9,7 +9,7 @@ typedef struct node sn;
 sn *qit(sn *);
 sn *rit(sn *);
 sn *q =NULL;
-static int k=1;
+static int k=1; //klajkljklasdjklasdf
 int main()
 {
 	char i;
