@@ -1,0 +1,336 @@
+
+#include"m_list.h"
+
+void main()
+   {
+      list *first=NULL,*second=NULL,*third=NULL;
+      int choice,i;
+      char ch='y';
+      while(1)
+    {
+        clrscr();
+        printf("
+     case 1:  Create list");
+        printf("
+     case 2:  Add in the list");
+        printf("
+     case 3:  Delete in the list");
+        printf("
+     case 4:  Append two list");
+        printf("
+     case 5:  show list");
+        printf("
+     case 6:  Exit");
+        printf("
+     Enter your choice : ");
+        scanf("%d",&choice);
+        switch(choice)
+      {
+         case 1:    //create list
+            while(ch!='n')
+              {
+            printf("
+Enter element : ");
+            scanf("%d",&i);
+            create(&first,i);
+            printf("
+Enter element (y/n) : ");
+            fflush(stdin);
+            scanf("%c",&ch);
+              }
+         break;
+         case 2:   //add in the list
+              int c;
+              clrscr();
+              printf("
+     case 1:  Add in Beginning");
+              printf("
+     case 2:  Add in End");
+              printf("
+     case 3:  Add After a given element");
+              printf("
+     case 4:  Return to main menu");
+              printf("
+     Enter your choice : ");
+              scanf("%d",&c);
+              switch(c)
+             {
+                case 1: add_at_beg(&first);
+                   break;
+                case 2: add_at_end(&first);
+                   break;
+                case 3: add_after_given_element(&first);
+                   break;
+                case 4: break;
+             }
+         break;
+         case 3:
+              clrscr();
+              printf("
+     case 1:  Delete in Beginning");
+              printf("
+     case 2:  Delete in End");
+              printf("
+     case 3:  Delete a specified element");
+              printf("
+     case 4:  Return to main menu");
+              printf("
+     Enter your choice : ");
+              scanf("%d",&c);
+              switch(c)
+             {
+                case 1: del_at_beg(&first);
+                   break;
+                case 2: del_at_end(&first);
+                   break;
+                case 3: del_specified_element(&first);
+                   break;
+                case 4: break;
+             }
+         break;
+         case 4:
+               char ch='y';
+               printf("Enter element in second list : ");
+               while(ch!='n')
+               {
+                  printf("
+Enter element : ");
+                  scanf("%d",&i);
+                  create(&second,i);
+                  printf("
+Enter element (y/n) : ");
+                  fflush(stdin);
+                  scanf("%c",&ch);
+               }
+               append(&third,first,second);
+
+         break;
+         case 5:    //show list
+              clrscr();
+              printf("
+     case 1:  List 1");
+              printf("
+     case 2:  List 2");
+              printf("
+     case 3:  List 3");
+              printf("
+     Enter choice : ");
+              scanf("%d",&choice);
+              switch(choice)
+             {
+                case 1: show(first);break;
+                case 2: show(second);break;
+                case 3: show(third);break;
+            }
+         break;
+         case 6:    exit(0);
+
+      }
+
+
+    }
+   }
+
+
+*********************************
+#include<conio.h>
+#include<stdio.h>
+#include<alloc.h>
+#include<stdlib.h>
+typedef struct list
+  {
+     int info;
+     struct list *next;
+  };
+
+//.................Function Declaration ...........
+
+void create(struct list **p,int i)
+   {
+      struct list *temp,*q=*p;
+      temp=(struct list*)malloc(sizeof(struct list));
+      temp->info=i;
+      temp->next=NULL;
+      if(*p==NULL)
+      *p=temp;
+      else
+   {
+      while(q->next!=NULL)
+        q=q->next;
+      q->next=temp;
+   }
+   }
+int append(struct list **t,struct list *f,struct list *s)
+   {
+   struct list *temp=*t;
+   if(f==NULL && s==NULL)
+      return 0;
+   while(f)
+     {
+       create(t,f->info);
+       f=f->next;
+     }
+   while(s)
+     {
+       create(t,s->info);
+       s=s->next;
+     }
+
+   return 0;
+   }
+void show(struct list *p)
+   {
+     if(p==NULL)
+   printf(" List is Empty");
+     else
+     while(p)
+       {
+    printf("%d  ",p->info);
+    p=p->next;
+       }
+     getch();
+   }
+void add_at_beg(struct list **l)
+     {
+      struct list *temp=(struct list *)malloc(sizeof(struct list));
+      printf("
+Enter element : ");
+      scanf("%d",&temp->info);
+      temp->next=NULL;
+      if(*l==NULL)
+         *l=temp;
+      else
+         {
+       temp->next=*l;
+       *l=temp;
+         }
+     }
+void del_at_beg(struct list **l)
+     {
+      list *temp;
+      if(*l==NULL)
+         {
+      printf("
+List is empty");
+      getch();
+         }
+      else
+         {
+      temp=*l;
+      *l=(*l)->next;
+      free(temp);
+         }
+     }
+void add_at_end(struct list **l)
+       {
+        list *temp,*p;
+        temp=(struct list *)malloc(sizeof(struct list));
+        printf("
+Enter element : ");
+        scanf("%d",&temp->info);
+        temp->next=NULL;
+        if(*l==NULL)
+      *l=temp;
+        else
+       {
+         p=*l;
+         while(p->next!=NULL)
+            p=p->next;
+         p->next=temp;
+       }
+       }
+
+void del_at_end(struct list **l)
+       {
+        list *temp,*p;
+        if(*l==NULL)
+      {
+        printf("
+List is Empty");
+        getch();
+      }
+        else if((*l)->next==NULL)
+       {
+          temp=*l;
+          *l=NULL;
+          free(temp);
+       }
+        else
+       {
+         p=*l;
+         while(p->next->next!=NULL)
+            p=p->next;
+         temp=p->next->next;
+         p->next=NULL;
+         free(temp);
+       }
+       }
+void add_after_given_element(list **l)
+    {
+       list *temp,*p;
+       int m;
+       temp=(struct list *)malloc(sizeof(struct list));
+       printf("
+Enter element : ");
+       scanf("%d",&temp->info);
+       printf("
+Enter position after which element inserted  : ");
+       scanf("%d",&m);
+       temp->next=NULL;
+       if(*l==NULL)
+   *l=temp;
+       else
+    {
+      p=*l;
+      while(p->next!=NULL)
+         if(p->info==m)
+      break;
+         else
+      p=p->next;
+
+      temp->next=p->next;
+      p->next=temp;
+
+    }
+    }
+void del_specified_element(list **l)
+    {
+       list *temp,*p,*q;
+       int m;
+       printf("
+Enter element which is deleted : ");
+       scanf("%d",&m);
+       if(*l==NULL)
+     {
+       printf("
+List is Empty");
+       getch();
+     }
+       else if((*l)->next!=NULL && (*l)->info==m)
+     {
+         temp=*l;
+         *l=(*l)->next;
+         free(temp);
+     }
+       else if((*l)->next==NULL && (*l)->info==m)
+      {
+         temp=*l;
+         *l=NULL;
+         free(temp);
+      }
+       else
+    {
+      p=*l;
+      while(p!=NULL)
+         if(p->info==m)
+       break;
+         else
+       {
+         q=p;
+         p=p->next;
+       }
+      temp=p;
+      q->next=p->next;
+      free(temp);
+    }
+    }

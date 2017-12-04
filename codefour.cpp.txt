@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int n;
+	struct node* next;
+};
+typedef struct node sn;
+sn *qit(sn *);
+sn *rit(sn *);
+sn *q =NULL;
+static int k=1;
+int main()
+{
+	char i;
+	sn *qp;
+	do
+	{
+	printf("
+Press 1 to put an element in queue
+");
+	printf("Press 2 to remove an element from queue
+");
+	printf("Press any other to exit
+");
+	printf("
+Enter choice:");
+	scanf("%d",&i);
+	switch(i)
+	{
+		case 1:
+		if(k==1)
+		{
+		k=0;
+		qp=malloc(sizeof(sn));
+		q=qp;
+		printf("Enter element:");
+		scanf("%d",&qp->n);
+		qp->next = NULL;
+		break;
+		}
+		else
+		{
+		q = qit(q);
+		break;
+		}
+		case 2:
+		if(k==1)
+		{
+		printf ("Queue list Empty
+");
+		break;
+		}
+		else
+		{
+		q = rit(qp);
+		qp=q;
+		break;
+		}
+		default:
+		break;
+	}
+	}
+	while (i==1 || i==2);
+	return 0;
+}
+
+sn *qit(sn *p)
+{
+	sn *t;
+	t=malloc(sizeof(sn*));
+	printf("Enter element:");
+	scanf("%d",&t->n);
+	p->next = t;
+	t->next = NULL;
+	return t;
+
+}
+
+sn *rit(sn *sq)
+{
+	sn *st;
+	st=sq;
+	printf("
+Removed element is: %d",sq->n);
+	if(sq->next == NULL)
+	{
+	printf("
+Last element
+");
+	k=1;
+	return NULL;
+	}
+	else
+	{
+	sq = sq->next;
+	free(st);
+	return sq;
+	}
+}

@@ -1,0 +1,126 @@
+#include<stdio.h>
+#include<conio.h>
+#define max 15
+int beg,end,top,i,n,loc,left,right;
+int array[max+1];    //contains the various elements.
+int upper[max-1],lower[max-1]; 
+//two stacks to store two ends of the list.
+
+void main()
+	{
+
+	  void enter(void);
+	  void quick(void);
+	  void prnt(void);
+	  clrscr();
+	  enter();     //entering elements in the array
+	  top=i-1;     //set top to stack
+		if (top==0)
+		   {
+	 printf("
+ UNDERFLOW CONDITION ");
+	 getch();
+	 exit();
+	}
+	   top=0;
+	   if(n>1)
+		   {
+	 top++;
+	 lower[top]=1;upper[top]=n;
+	 while ( top!=NULL )
+	 {
+	   beg=lower[top];
+	   end=upper[top];
+	   top--;
+	   left=beg;   right=end;    loc=beg;
+	   quick();
+	   if ( beg<loc-1)
+		  {
+	top++;
+	lower[top]=beg;
+	upper[top]=loc-1;
+		   }
+		if(loc+1<end)
+		   {
+	top++;
+	lower[top]=loc+1;
+	upper[top]=end;
+	}
+	   }		//end of while
+	  }		//end of if statement
+		printf("
+Sorted elements of the array are :");
+		prnt();   //to print the sorted array
+	  getch();
+	}               //end of main
+
+
+  void  enter(void)
+   {
+	printf("
+Enter the no of elements in the array:");
+	scanf("%d",&n);
+	printf("
+Enter the elements of the array :");
+	for(i=1;i<=n;i++)
+	   {
+	 printf("
+ Enter the %d element :",i);
+	 scanf("%d",&array[i]);
+	   }
+   }
+
+
+   void  prnt(void)
+   {
+	for(i=1;i<=n;i++)
+	   {
+	 printf("
+ The %d element  is : %d",i,array[i]);
+	   }
+   }
+
+   void quick()
+   {
+	 int temp;
+	 void tr_fr_right(void);
+	 while( array[loc]<=array[right] && loc!=right)
+	 {
+	   right--;
+	 }
+
+	  if(loc==right)
+	 return ;
+
+	  if(array[loc]>array[right])
+	 {
+		 temp=array[loc];
+		 array[loc]=array[right];
+		 array[right]=temp;
+	  loc=right;
+	  tr_fr_right();
+	 }
+	 return ;
+    }
+
+   void  tr_fr_right()
+    {
+	   int temp;
+	   while( array[loc] > array[left] && loc!=left)
+	 {
+	   left++;
+	 }
+
+	  if(loc==left)
+	 return ;
+
+	  if(array[loc] < array[left])
+	 {
+		 temp=array[loc];
+		 array[loc]=array[left];
+		 array[left]=temp;
+	  loc=left;
+	  quick();
+	 }
+	 return ;
+   }
