@@ -13,7 +13,7 @@ void main()
  {
   int no,i,item,pos;
   clrscr();
-  start.next=NULL;
+  start.next=NULL; //dsgdsgfsdf
   node=&start;
   printf("How many nodes, you want in linked list? ");
    scanf("%d",&no);
