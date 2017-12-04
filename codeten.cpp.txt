@@ -4,7 +4,7 @@
 struct tnode {
  int data;
  struct tnode *left;
- struct tnode *right;
+ struct tnode *right; //kljkljsdkljioser
 };
 
 /* insert, swap, search value, search minimum and search maximum values */

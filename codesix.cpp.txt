@@ -23,7 +23,7 @@ void htab_free(hashtable htab);
 
 int main(int argc, char *argv[]) {
  char line[MAXLINE];
- hashtable htab = {0};
+ hashtable htab = {0}; //klsdjklioeruwiot
  int len = 0;
  int i = 0;
  int retv = 0;

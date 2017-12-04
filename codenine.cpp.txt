@@ -16,7 +16,7 @@ struct tnode {                        /* the tree node: */
 
 struct tnode *addtree(struct tnode *, char *);
 struct tnode *talloc(void);
-void treeprint(struct tnode *);
+void treeprint(struct tnode *); //uuioweuryuirqwe
 void ungetch(int);
 int getword(char *, int);
 int getch(void);
