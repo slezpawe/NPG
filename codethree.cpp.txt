@@ -6,6 +6,7 @@ void main()
       list *first=NULL,*second=NULL,*third=NULL;
       int choice,i;
       char ch='y';
+      //nic nie znaczacy komentarz
       while(1)
     {
         clrscr();
